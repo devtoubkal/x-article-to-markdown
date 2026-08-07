@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "X Article to Markdown",
+  "version": "1.0",
+  "author": "devtoubkal",
+  "description": "Export X articles to Obsidian-ready Markdown",
+  "permissions": ["activeTab", "scripting"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Export to Markdown",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  }
+}

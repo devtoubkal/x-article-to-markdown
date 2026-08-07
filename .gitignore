@@ -1,0 +1,8 @@
+AGENTS.md
+PLAN.md
+*.zip
+*.pem
+dist/
+public-tree/
+.DS_Store
+node_modules/
