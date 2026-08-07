@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root {
+        --bg-top: #16161d;
+        --bg-bottom: #0e0e13;
+        --card: #1c1c24;
+        --card-border: rgba(255, 255, 255, 0.07);
+        --text: #e8eaf0;
+        --text-muted: #8b90a0;
+        --accent: #4f8dff;
+        --success: #22c55e;
+        --error: #f87171;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--bg-bottom);
+      }
+
+      body {
+        width: 316px;
+        margin: 2px auto;
+        padding: 16px;
+        border-radius: 14px;
+        border: 1px solid var(--card-border);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", sans-serif;
+        font-size: 13px;
+        color: var(--text);
+        background: radial-gradient(
+          120% 100% at 85% -20%,
+          var(--bg-top) 0%,
+          var(--bg-bottom) 70%
+        );
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      header img {
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+        flex: none;
+      }
+
+      header .brand-title {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 650;
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+      }
+
+      header .brand-sub {
+        margin: 2px 0 0;
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      #status {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 14px;
+        border-radius: 12px;
+        background: var(--card);
+        border: 1px solid var(--card-border);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+        font-size: 13px;
+        line-height: 1.45;
+        word-break: break-word;
+      }
+
+      #status::before {
+        content: "";
+        flex: none;
+        width: 16px;
+        height: 16px;
+        margin-top: 1px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #7fb0ff, var(--accent));
+        box-shadow: 0 0 10px rgba(79, 141, 255, 0.35);
+      }
+
+      #status.extracting::before {
+        border: 2px solid var(--card);
+        border-top-color: var(--accent);
+        border-right-color: var(--accent);
+        background: none;
+        box-shadow: none;
+        animation: spin 0.9s linear infinite;
+      }
+
+      #status.success::before {
+        background: radial-gradient(circle at 30% 30%, #4ade80, var(--success));
+        box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
+      }
+
+      #status.error::before {
+        background: radial-gradient(circle at 30% 30%, #fda4af, var(--error));
+        box-shadow: 0 0 10px rgba(248, 113, 113, 0.4);
+      }
+
+      #status.success::before,
+      #status.error::before {
+        content: "✓";
+        display: grid;
+        place-items: center;
+        color: #0e0e13;
+        font-size: 11px;
+        font-weight: 800;
+        line-height: 1;
+        padding-top: 2px;
+      }
+
+      #status.error::before {
+        content: "!";
+        font-weight: 900;
+        padding-top: 1px;
+        font-size: 12px;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      #status.success {
+        border-color: rgba(34, 197, 94, 0.25);
+      }
+
+      #status.error {
+        border-color: rgba(248, 113, 113, 0.25);
+      }
+
+      #hint {
+        margin-top: 12px;
+        font-size: 11px;
+        color: var(--text-muted);
+        line-height: 1.5;
+        transition: opacity 160ms ease;
+      }
+
+      #status.success + #hint {
+        color: var(--success);
+      }
+
+      #downloadBlock {
+        margin-top: 12px;
+        padding: 14px;
+        border-radius: 12px;
+        background: var(--card);
+        border: 1px solid var(--card-border);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      }
+
+      #downloadBlock[hidden] {
+        display: none;
+      }
+
+      #meta-title {
+        margin: 0 0 6px;
+        font-size: 13px;
+        font-weight: 650;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      #meta-author,
+      #meta-date {
+        margin: 0;
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      #meta-date {
+        margin-bottom: 8px;
+      }
+
+      #meta-author {
+        margin-bottom: 10px;
+      }
+
+      #download {
+        width: 100%;
+        padding: 10px 14px;
+        border: none;
+        border-radius: 9px;
+        background: linear-gradient(135deg, #6ba1ff, var(--accent));
+        color: #0c1220;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          filter 160ms ease,
+          transform 120ms ease;
+      }
+
+      #download:hover {
+        filter: brightness(1.08);
+      }
+
+      #download:active {
+        transform: translateY(1px);
+      }
+
+      #download:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #status.extracting::before {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="icons/icon128.png" alt="" />
+      <div>
+        <h1 class="brand-title">X Article → Markdown</h1>
+        <p class="brand-sub">Obsidian-ready export</p>
+      </div>
+    </header>
+    <div id="status" class="extracting">Looking for an article…</div>
+    <div id="hint">Open an X article, then click the extension.</div>
+    <div id="downloadBlock" hidden>
+      <p id="meta-title"></p>
+      <p id="meta-author"></p>
+      <p id="meta-date"></p>
+      <button id="download">Download markdown</button>
+    </div>
+    <script src="core.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
