@@ -1,0 +1,29 @@
+{
+  "name": "x-article-to-markdown",
+  "version": "1.0.3",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "bun test tests/",
+    "verify": "bun test verify/",
+    "test:watch": "bun test tests/ --watch",
+    "compile": "tsc --noEmit",
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "lint:firefox": "bunx web-ext lint --source-dir .output/firefox-mv3",
+    "postinstall": "wxt prepare"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.14",
+    "@types/jsdom": "^30.0.0",
+    "jsdom": "^26.1.0",
+    "jszip": "^3.10.1",
+    "typescript": "^5.9.3",
+    "web-ext": "^10.6.0",
+    "wxt": "^0.21.3"
+  }
+}
