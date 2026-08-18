@@ -1,0 +1,11 @@
+AGENTS.md
+PLAN.md
+*.zip
+*.xpi
+*.pem
+public-tree/
+.wxt/
+.output/
+web-ext-artifacts/
+.DS_Store
+node_modules/
